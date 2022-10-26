@@ -1,11 +1,11 @@
-# skim.zsh
+# fzf.zsh
 
-This plugin tries to find [skim](https://github.com/lotabout/skim) based on where
+This plugin tries to find [fzf](https://github.com/junegunn/fzf) based on where
 it's been installed, and enables its fuzzy auto-completion and key bindings.
 
-This plugin will not install `skim` for you.  This needs to be done before using.
+This plugin will not install `fzf` for you.  This needs to be done before using.
 
-To use it, add `skim.zsh` to the plugins in your zshrc file. The following is an example using zinit:
+To use it, add `fzf.zsh` to the plugins in your zshrc file. The following is an example using zinit:
 
 ```zsh
 zinit wait lucid for \
@@ -13,7 +13,7 @@ zinit wait lucid for \
   OMZL::history.zsh \
   OMZP::git \
   casonadams/alacritty-shell \
-  casonadams/skim.zsh \
+  casonadams/fzf.zsh \
   ;
 ```
 
@@ -21,21 +21,22 @@ zinit wait lucid for \
 
 All these settings should go in your zshrc file, before the plugin is loaded.
 
-### `SKIM_BASE`
+### `FZF_BASE`
 
-Set to skim installation directory path:
+Set to fzf installation directory path:
 
 ```zsh
-export SKIM_BASE=/path/to/skim/install/dir
+export FZF_BASE=/path/to/fzf/install/dir
 ```
 
-### `SKIM_DEFAULT_COMMAND`
+### `FZF_DEFAULT_COMMAND`
 
 Set default command to use when input is tty:
 
 ```zsh
-export SKIM_DEFAULT_COMMAND='<your skim default command>'
+export FZF_DEFAULT_COMMAND='<your fzf default command>'
 ```
+
 If not set, the plugin will try to set it to these, in the order in which they're found:
 
 - [`fd`](https://github.com/sharkdp/fd)
@@ -43,19 +44,18 @@ If not set, the plugin will try to set it to these, in the order in which they'r
 
 The plugin default settings lets one toggle the preview window using `?`
 
-### `DISABLE_SKIM_AUTO_COMPLETION`
+### `DISABLE_FZF_AUTO_COMPLETION`
 
-Set whether to load skim auto-completion:
+Set whether to load fzf auto-completion:
 
 ```zsh
-DISABLE_SKIM_AUTO_COMPLETION="true"
+DISABLE_FZF_AUTO_COMPLETION="true"
 ```
 
-### `DISABLE_SKIM_KEY_BINDINGS`
+### `DISABLE_FZF_KEY_BINDINGS`
 
 Set whether to disable key bindings (CTRL-T, CTRL-R, ALT-C):
 
 ```zsh
-DISABLE_SKIM_KEY_BINDINGS="true"
+DISABLE_FZF_KEY_BINDINGS="true"
 ```
-
