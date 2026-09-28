@@ -480,7 +480,45 @@
     });
   }
 
-  const installTabs = document.querySelectorAll(".install-tab");
+  const heroInstallTabs = document.querySelectorAll(".install-box [data-install-tab]");
+  const heroInstallCode = document.getElementById("installCode");
+  const heroInstallCopyBtn = document.getElementById("installCopyBtn");
+
+  const heroInstallSnippets = {
+    zload: "zload casonadams/fzf.zsh",
+    zinit: "zinit light casonadams/fzf.zsh",
+    omz: "git clone https://github.com/casonadams/fzf.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf",
+    antidote: "casonadams/fzf.zsh",
+    manual: "source ~/.fzf.zsh/fzf.plugin.zsh"
+  };
+
+  if (heroInstallTabs.length && heroInstallCode && heroInstallCopyBtn) {
+    heroInstallTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        heroInstallTabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const key = tab.dataset.installTab || "zload";
+        const cmd = heroInstallSnippets[key] || heroInstallSnippets.zload;
+
+        heroInstallCode.textContent = cmd;
+        heroInstallCopyBtn.dataset.copy = cmd;
+      });
+    });
+
+    heroInstallCopyBtn.addEventListener("click", () => {
+      const text = heroInstallCopyBtn.dataset.copy || heroInstallCode.textContent.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const originalHtml = heroInstallCopyBtn.innerHTML;
+        heroInstallCopyBtn.innerHTML = `<span>Copied!</span>`;
+        setTimeout(() => {
+          heroInstallCopyBtn.innerHTML = originalHtml;
+        }, 2000);
+      });
+    });
+  }
+
+  const installTabs = document.querySelectorAll("[data-target]");
   const installPanels = document.querySelectorAll(".install-panel");
 
   installTabs.forEach((tab) => {

@@ -853,6 +853,94 @@ code, kbd, pre {
   font-size: 0.75rem;
 }
 
+.install-box {
+  max-width: 680px;
+  margin: 1.5rem auto 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.install-box .install-tabs {
+  display: flex;
+  overflow-x: auto;
+  background: var(--bg-surface-raised);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 0.5rem;
+  margin-bottom: 0;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.install-box .install-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.install-box .install-tab:hover {
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.install-box .install-tab.active {
+  color: var(--accent-green);
+  border-bottom-color: var(--accent-green);
+  background: transparent;
+  font-weight: 600;
+}
+
+.install-tab-badge {
+  font-size: 0.68rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-full);
+  background: var(--accent-green);
+  color: #0a0d13;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.install-command-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  gap: 1rem;
+  background: var(--bg-base);
+}
+
+.install-code {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+}
+
+.install-prompt-symbol {
+  color: var(--text-muted);
+  user-select: none;
+  font-weight: 700;
+}
+
 .install-tabs {
   display: flex;
   gap: 0.5rem;
