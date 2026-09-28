@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fzf.zsh · Modern, Fast FZF Shell Integration</title>
+  <meta name="description" content="An ultra-fast, modern fzf plugin for Zsh. Progressive CLI tool discovery (fd, rg, bat, eza), interactive cheatsheet, and first-class zload integration.">
+
+  <meta property="og:title" content="fzf.zsh · Modern, Fast FZF Shell Integration">
+  <meta property="og:description" content="Modern fzf integration for Zsh with progressive fallbacks, live terminal preview simulator, and effortless configuration generator.">
+  <meta property="og:url" content="https://casonadams.github.io/fzf.zsh/">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    (function() {
+      const saved = localStorage.getItem("fzf:site-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = saved || (prefersDark ? "dark" : "light");
+    })();
+  </script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="#hero" class="brand">
+        <svg class="brand-icon" viewBox="0 0 100 100" fill="none">
+          <rect width="100" height="100" rx="20" fill="#0d1117"/>
+          <path d="M22 34L40 48L22 62" stroke="#e5534b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="62" cy="46" r="14" stroke="#52e096" stroke-width="6"/>
+          <line x1="72" y1="56" x2="84" y2="68" stroke="#52e096" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span>fzf.zsh</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#simulator" class="nav-link">Simulator</a></li>
+        <li><a href="#config" class="nav-link">Config Generator</a></li>
+        <li><a href="#cheatsheet" class="nav-link">Cheatsheet</a></li>
+        <li><a href="#install" class="nav-link">Install</a></li>
+        <li>
+          <a href="https://github.com/casonadams/zload" target="_blank" rel="noopener" class="nav-badge-link" title="Check out zload plugin manager">
+            <span>⚡ Powered by zload</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://github.com/casonadams/fzf.zsh" target="_blank" rel="noopener" class="btn-sm" aria-label="GitHub Repository">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle dark/light theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header id="hero" class="hero">
+    <div class="container">
+      <div class="hero-pill">
+        <span>🚀 Modernized FZF Integration for Zsh</span>
+      </div>
+
+      <h1 class="hero-title">
+        Fuzzy Finding, <span class="hero-gradient">Perfected.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        An ultra-fast Zsh plugin delivering intelligent path discovery, progressive CLI fallbacks (<code>fd</code> &gt; <code>rg</code> &gt; <code>find</code>, <code>bat</code> &gt; <code>cat</code>, <code>eza</code> &gt; <code>tree</code>), and instant shell key bindings.
+      </p>
+
+      <div class="hero-badges">
+        <span class="hero-badge"><span class="badge-dot"></span>ShellSpec Tested</span>
+        <span class="hero-badge"><span class="badge-dot"></span>ShellCheck 0 Warnings</span>
+        <span class="hero-badge"><span class="badge-dot"></span>shfmt Formatted</span>
+        <span class="hero-badge"><span class="badge-dot"></span>Zero Config Required</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="simulator" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Interactive Terminal</div>
+        <h2 class="section-title">Test Drive FZF in Your Browser</h2>
+        <p class="section-desc">Experience real fuzzy matching, live syntax-highlighted previews, and interactive modes directly in this terminal replica.</p>
+      </div>
+
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-controls">
+            <span class="ctrl-dot red"></span>
+            <span class="ctrl-dot yellow"></span>
+            <span class="ctrl-dot green"></span>
+          </div>
+          <div class="terminal-title">zsh — fzf interactive session</div>
+          <div class="terminal-mode-tabs">
+            <button class="mode-tab active" data-mode="files">CTRL-T Files</button>
+            <button class="mode-tab" data-mode="history">CTRL-R History</button>
+            <button class="mode-tab" data-mode="dirs">ALT-C Dirs</button>
+          </div>
+        </div>
+
+        <div class="fzf-container">
+          <div class="fzf-search-bar">
+            <span class="fzf-prompt">&gt;</span>
+            <input type="text" id="fzfInput" class="fzf-input" placeholder="Type to fuzzy search..." autocomplete="off" spellcheck="false">
+            <span id="fzfStats" class="fzf-stats">7/7</span>
+          </div>
+
+          <div class="fzf-view-split">
+            <div id="fzfList" class="fzf-list-pane"></div>
+            <div id="fzfPreview" class="fzf-preview-pane"></div>
+          </div>
+
+          <div class="fzf-status-bar">
+            <div class="shortcut-hints">
+              <span><span class="key-tag">↑/↓</span> Navigate</span>
+              <span><span class="key-tag">?</span> Toggle Preview</span>
+              <span><span class="key-tag">Enter</span> Select</span>
+            </div>
+            <div>
+              <span>Engine: <strong style="color:var(--accent-green)">fzf.zsh</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="config" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Customization</div>
+        <h2 class="section-title">Interactive Configuration Generator</h2>
+        <p class="section-desc">Tune search tools, preview styles, and window layouts. Copy the generated block straight into your <code>~/.zshrc</code>.</p>
+      </div>
+
+      <div class="generator-grid">
+        <div class="generator-controls">
+          <div class="control-group">
+            <label class="control-label" for="cfgSearch">File Search Command</label>
+            <select id="cfgSearch" class="control-select">
+              <option value="fd" selected>fd (Fastest, smart ignore)</option>
+              <option value="rg">ripgrep (rg --files)</option>
+              <option value="find">find (POSIX standard)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="cfgFilePreview">File Preview Tool</label>
+            <select id="cfgFilePreview" class="control-select">
+              <option value="bat" selected>bat (Syntax highlighted with numbers)</option>
+              <option value="cat">cat (Plain text)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="cfgDirPreview">Directory Preview Tool</label>
+            <select id="cfgDirPreview" class="control-select">
+              <option value="eza" selected>eza --tree (Modern color tree)</option>
+              <option value="tree">tree (Classic directory tree)</option>
+              <option value="ls">ls -la (Standard listing)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="cfgBatTheme">Bat Theme</label>
+            <select id="cfgBatTheme" class="control-select">
+              <option value="ansi" selected>ansi (Terminal default)</option>
+              <option value="Nord">Nord</option>
+              <option value="Dracula">Dracula</option>
+              <option value="GitHub">GitHub</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="cfgHeight">Terminal Height</label>
+            <select id="cfgHeight" class="control-select">
+              <option value="40%" selected>40% (Compact bottom pane)</option>
+              <option value="50%">50% (Half screen)</option>
+              <option value="60%">60% (Spacious)</option>
+              <option value="100%">100% (Fullscreen)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="cfgPreviewPos">Preview Window Position</label>
+            <select id="cfgPreviewPos" class="control-select">
+              <option value="right" selected>right (Split vertical)</option>
+              <option value="down">down (Split horizontal)</option>
+              <option value="hidden">hidden (Toggle with ? key)</option>
+            </select>
+          </div>
+
+          <div class="control-checkboxes">
+            <label class="checkbox-label">
+              <input type="checkbox" id="cfgDisableComp">
+              <span>Disable Auto-Completion (<code>DISABLE_FZF_AUTO_COMPLETION</code>)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="cfgDisableKeys">
+              <span>Disable Key Bindings (<code>DISABLE_FZF_KEY_BINDINGS</code>)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="code-output-card">
+          <div class="card-header">
+            <span class="card-header-title">Generated ~/.zshrc snippet</span>
+            <button id="copyConfigBtn" class="btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre id="configOutput" class="code-snippet"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cheatsheet" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Reference</div>
+        <h2 class="section-title">Keybindings & Shortcuts</h2>
+        <p class="section-desc">Quick cheat sheet for widgets, interactive keys, and navigation actions enabled by default.</p>
+      </div>
+
+      <div class="cheatsheet-grid">
+        <div class="cheatsheet-card">
+          <div class="cheatsheet-card-title">
+            <span class="cheatsheet-key">CTRL-T</span>
+            <span>File & Directory Selector</span>
+          </div>
+          <div class="cheatsheet-items">
+            <div class="cheatsheet-row">
+              <span class="row-action">Paste selected path(s) into line</span>
+              <span class="row-key">Enter</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Multi-select items</span>
+              <span class="row-key">Tab / Shift-Tab</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Toggle preview window</span>
+              <span class="row-key">?</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Cancel / Abort</span>
+              <span class="row-key">Ctrl-C / Esc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cheatsheet-card">
+          <div class="cheatsheet-card-title">
+            <span class="cheatsheet-key">CTRL-R</span>
+            <span>Command History Search</span>
+          </div>
+          <div class="cheatsheet-items">
+            <div class="cheatsheet-row">
+              <span class="row-action">Paste command into prompt</span>
+              <span class="row-key">Enter</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Toggle chronological sort</span>
+              <span class="row-key">Ctrl-R</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Search query prefill</span>
+              <span class="row-key">Current Buffer</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Cancel without changes</span>
+              <span class="row-key">Ctrl-C / Esc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cheatsheet-card">
+          <div class="cheatsheet-card-title">
+            <span class="cheatsheet-key">ALT-C</span>
+            <span>Fast Directory Change</span>
+          </div>
+          <div class="cheatsheet-items">
+            <div class="cheatsheet-row">
+              <span class="row-action">cd directly into directory</span>
+              <span class="row-key">Enter</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Preview directory tree</span>
+              <span class="row-key">Automatic (eza/tree)</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Scroll preview pane</span>
+              <span class="row-key">Shift-Up / Shift-Down</span>
+            </div>
+            <div class="cheatsheet-row">
+              <span class="row-action">Cancel directory change</span>
+              <span class="row-key">Ctrl-C / Esc</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="install" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Quickstart</div>
+        <h2 class="section-title">Install in Seconds</h2>
+        <p class="section-desc">Compatible with all major Zsh plugin managers. Highly recommended with <code>zload</code> for instant startup.</p>
+      </div>
+
+      <div class="install-tabs">
+        <button class="install-tab active" data-target="panel-zload">zload (Recommended)</button>
+        <button class="install-tab" data-target="panel-zinit">zinit</button>
+        <button class="install-tab" data-target="panel-omz">oh-my-zsh</button>
+        <button class="install-tab" data-target="panel-antidote">antidote</button>
+        <button class="install-tab" data-target="panel-manual">Manual / Git</button>
+      </div>
+
+      <div id="panel-zload" class="install-panel active">
+        <pre class="install-code"><code># Add to ~/.zshrc
+zload casonadams/fzf.zsh</code></pre>
+      </div>
+
+      <div id="panel-zinit" class="install-panel">
+        <pre class="install-code"><code># Add to ~/.zshrc
+zinit light casonadams/fzf.zsh</code></pre>
+      </div>
+
+      <div id="panel-omz" class="install-panel">
+        <pre class="install-code"><code># Clone into custom plugins
+git clone https://github.com/casonadams/fzf.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf
+
+# Add to plugins in ~/.zshrc
+plugins=(... fzf)</code></pre>
+      </div>
+
+      <div id="panel-antidote" class="install-panel">
+        <pre class="install-code"><code># Add to ~/.zsh_plugins.txt
+casonadams/fzf.zsh</code></pre>
+      </div>
+
+      <div id="panel-manual" class="install-panel">
+        <pre class="install-code"><code># Clone repository
+git clone https://github.com/casonadams/fzf.zsh ~/.fzf.zsh
+
+# Source in ~/.zshrc
+source ~/.fzf.zsh/fzf.plugin.zsh</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Built with ❤️ by <a href="https://github.com/casonadams" target="_blank" rel="noopener">Cason Adams</a>. Released under the MIT License.</p>
+      <p style="margin-top: 0.5rem; color: var(--text-muted)">Pair with <a href="https://github.com/casonadams/zload" target="_blank" rel="noopener">zload</a> and <a href="https://github.com/casonadams/walh-shell" target="_blank" rel="noopener">walh-shell</a> for the ultimate shell experience.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

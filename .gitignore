@@ -1,0 +1,5 @@
+.DS_Store
+.shellspec-quick*
+coverage/
+report/
+.specs/
