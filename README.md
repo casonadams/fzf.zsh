@@ -14,6 +14,27 @@
 
 ---
 
+## Prerequisites
+
+`fzf.zsh` automates your shell integration and preview pipelines, but requires the [`fzf`](https://github.com/junegunn/fzf) binary installed on your machine.
+
+### Companion CLI Binaries
+
+The plugin progressively leverages modern CLI utilities for blazing fast search and syntax-highlighted previews, with graceful automatic fallback chains:
+
+| Binary | Status | Role | Fallback Chain | Quick Install |
+| :--- | :--- | :--- | :--- | :--- |
+| [`fzf`](https://github.com/junegunn/fzf) | **Required** | Core interactive fuzzy finder | — | `brew install fzf` / `apt install fzf` |
+| [`fd`](https://github.com/sharkdp/fd) | **Recommended** | High-performance file traversal | `fd` &gt; `rg` &gt; `find` | `brew install fd` / `apt install fd-find` |
+| [`bat`](https://github.com/sharkdp/bat) | **Recommended** | Syntax-highlighted code preview | `bat` &gt; `cat` | `brew install bat` / `apt install bat` |
+| [`eza`](https://github.com/eza-community/eza) | **Recommended** | Colorized directory tree preview | `eza` &gt; `tree` &gt; `ls` | `brew install eza` / `apt install eza` |
+| [`ripgrep`](https://github.com/BurntSushi/ripgrep) | Fallback | Fast search when `fd` is absent | `fd` &gt; `rg` &gt; `find` | `brew install ripgrep` / `apt install ripgrep` |
+| [`tree`](https://gitlab.com/OldManProgrammer/unix-tree) | Fallback | Tree preview when `eza` is absent | `eza` &gt; `tree` &gt; `ls` | `brew install tree` / `apt install tree` |
+
+If optional tools are omitted, `fzf.zsh` falls back to built-in POSIX utilities (`find`, `cat`, `ls`) with zero manual configuration.
+
+---
+
 ## Features
 
 - **Intelligent Path Discovery**: Automatically checks `$FZF_BASE`, Homebrew (`/opt/homebrew`, `/usr/local`), `$HOME/.fzf`, system package directories (`/usr/share/fzf`), and vendored fallbacks.

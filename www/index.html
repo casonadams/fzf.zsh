@@ -39,6 +39,7 @@
         <li><a href="#simulator" class="nav-link">Simulator</a></li>
         <li><a href="#config" class="nav-link">Config Generator</a></li>
         <li><a href="#cheatsheet" class="nav-link">Cheatsheet</a></li>
+        <li><a href="#prerequisites" class="nav-link">Prerequisites</a></li>
         <li><a href="#install" class="nav-link">Install</a></li>
         <li>
           <a href="https://github.com/casonadams/zload" target="_blank" rel="noopener" class="nav-badge-link" title="Check out zload plugin manager">
@@ -306,6 +307,78 @@
               <span class="row-key">Ctrl-C / Esc</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prerequisites" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Prerequisites</div>
+        <h2 class="section-title">Required &amp; Recommended Binaries</h2>
+        <p class="section-desc"><code>fzf.zsh</code> configures shell completions, widgets, and preview pipelines, but requires the <code>fzf</code> binary. Install optional companion tools to unleash fast search and rich previews.</p>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-card required">
+          <div class="tool-badge required-badge">Required</div>
+          <div class="tool-header">
+            <h3 class="tool-name"><a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">fzf ↗</a></h3>
+            <span class="tool-category">Core Engine</span>
+          </div>
+          <p class="tool-desc">Interactive command-line fuzzy finder powering all interactive menus, file pickers, and widgets.</p>
+          <div class="tool-cmd"><code>brew install fzf</code> <span class="tool-or">or</span> <code>apt install fzf</code></div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-badge recommended-badge">Recommended</div>
+          <div class="tool-header">
+            <h3 class="tool-name"><a href="https://github.com/sharkdp/fd" target="_blank" rel="noopener">fd ↗</a></h3>
+            <span class="tool-category">Fast Search</span>
+          </div>
+          <p class="tool-desc">Fast, colorized, user-friendly alternative to find with smart ignore rules (.gitignore).</p>
+          <div class="tool-cmd"><code>brew install fd</code> <span class="tool-or">or</span> <code>apt install fd-find</code></div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-badge recommended-badge">Recommended</div>
+          <div class="tool-header">
+            <h3 class="tool-name"><a href="https://github.com/sharkdp/bat" target="_blank" rel="noopener">bat ↗</a></h3>
+            <span class="tool-category">File Preview</span>
+          </div>
+          <p class="tool-desc">Cat clone with syntax highlighting, line numbering, Git diff badges, and automatic themes.</p>
+          <div class="tool-cmd"><code>brew install bat</code> <span class="tool-or">or</span> <code>apt install bat</code></div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-badge recommended-badge">Recommended</div>
+          <div class="tool-header">
+            <h3 class="tool-name"><a href="https://github.com/eza-community/eza" target="_blank" rel="noopener">eza ↗</a></h3>
+            <span class="tool-category">Tree Preview</span>
+          </div>
+          <p class="tool-desc">Modern, maintained replacement for ls featuring recursive directory tree previews with file type styling.</p>
+          <div class="tool-cmd"><code>brew install eza</code> <span class="tool-or">or</span> <code>apt install eza</code></div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-badge fallback-badge">Fallback</div>
+          <div class="tool-header">
+            <h3 class="tool-name"><a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener">ripgrep ↗</a></h3>
+            <span class="tool-category">Fast Search</span>
+          </div>
+          <p class="tool-desc">High-performance line-oriented search tool used automatically if fd is not found on your system.</p>
+          <div class="tool-cmd"><code>brew install ripgrep</code> <span class="tool-or">or</span> <code>apt install ripgrep</code></div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-badge fallback-badge">Fallback</div>
+          <div class="tool-header">
+            <h3 class="tool-name"><a href="https://gitlab.com/OldManProgrammer/unix-tree" target="_blank" rel="noopener">tree ↗</a></h3>
+            <span class="tool-category">Tree Preview</span>
+          </div>
+          <p class="tool-desc">Standard Unix recursive directory tree viewer used automatically if eza is not installed.</p>
+          <div class="tool-cmd"><code>brew install tree</code> <span class="tool-or">or</span> <code>apt install tree</code></div>
         </div>
       </div>
     </div>
