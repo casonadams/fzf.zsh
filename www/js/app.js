@@ -518,23 +518,6 @@
     });
   }
 
-  const installTabs = document.querySelectorAll("[data-target]");
-  const installPanels = document.querySelectorAll(".install-panel");
-
-  installTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      installTabs.forEach((t) => t.classList.remove("active"));
-      installPanels.forEach((p) => p.classList.remove("active"));
-
-      tab.classList.add("active");
-      const target = tab.dataset.target;
-      const targetPanel = document.getElementById(target);
-      if (targetPanel) {
-        targetPanel.classList.add("active");
-      }
-    });
-  });
-
   updateFiltering();
   generateConfigSnippet();
 })();

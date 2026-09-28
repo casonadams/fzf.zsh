@@ -36,11 +36,11 @@
       </a>
 
       <ul class="nav-links">
+        <li><a href="#install" class="nav-link">Install</a></li>
         <li><a href="#simulator" class="nav-link">Simulator</a></li>
         <li><a href="#config" class="nav-link">Config Generator</a></li>
         <li><a href="#cheatsheet" class="nav-link">Cheatsheet</a></li>
         <li><a href="#prerequisites" class="nav-link">Prerequisites</a></li>
-        <li><a href="#install" class="nav-link">Install</a></li>
         <li>
           <a href="https://github.com/casonadams/zload" target="_blank" rel="noopener" class="nav-badge-link" title="Check out zload plugin manager">
             <span>⚡ Powered by zload</span>
@@ -82,7 +82,7 @@
         <span class="hero-badge"><span class="badge-dot"></span>Zero Config Required</span>
       </div>
 
-      <div class="install-box">
+      <div id="install" class="install-box">
         <div class="install-tabs" role="tablist">
           <button class="install-tab active" data-install-tab="zload">
             <span>zload</span>
@@ -403,55 +403,6 @@
           <p class="tool-desc">Standard Unix recursive directory tree viewer used automatically if eza is not installed.</p>
           <div class="tool-cmd"><code>brew install tree</code> <span class="tool-or">or</span> <code>apt install tree</code></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="install" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Quickstart</div>
-        <h2 class="section-title">Install in Seconds</h2>
-        <p class="section-desc">Compatible with all major Zsh plugin managers. Highly recommended with <code>zload</code> for instant startup.</p>
-      </div>
-
-      <div class="install-tabs">
-        <button class="install-tab active" data-target="panel-zload">zload (Recommended)</button>
-        <button class="install-tab" data-target="panel-zinit">zinit</button>
-        <button class="install-tab" data-target="panel-omz">oh-my-zsh</button>
-        <button class="install-tab" data-target="panel-antidote">antidote</button>
-        <button class="install-tab" data-target="panel-manual">Manual / Git</button>
-      </div>
-
-      <div id="panel-zload" class="install-panel active">
-        <pre class="install-code"><code># Add to ~/.zshrc
-zload casonadams/fzf.zsh</code></pre>
-      </div>
-
-      <div id="panel-zinit" class="install-panel">
-        <pre class="install-code"><code># Add to ~/.zshrc
-zinit light casonadams/fzf.zsh</code></pre>
-      </div>
-
-      <div id="panel-omz" class="install-panel">
-        <pre class="install-code"><code># Clone into custom plugins
-git clone https://github.com/casonadams/fzf.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf
-
-# Add to plugins in ~/.zshrc
-plugins=(... fzf)</code></pre>
-      </div>
-
-      <div id="panel-antidote" class="install-panel">
-        <pre class="install-code"><code># Add to ~/.zsh_plugins.txt
-casonadams/fzf.zsh</code></pre>
-      </div>
-
-      <div id="panel-manual" class="install-panel">
-        <pre class="install-code"><code># Clone repository
-git clone https://github.com/casonadams/fzf.zsh ~/.fzf.zsh
-
-# Source in ~/.zshrc
-source ~/.fzf.zsh/fzf.plugin.zsh</code></pre>
       </div>
     </div>
   </section>

@@ -941,57 +941,6 @@ code, kbd, pre {
   font-weight: 700;
 }
 
-.install-tabs {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.install-tab {
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.install-tab:hover, .install-tab.active {
-  background: var(--accent-green-dim);
-  border-color: var(--accent-green);
-  color: var(--accent-green);
-  font-weight: 600;
-}
-
-.install-panel {
-  display: none;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.install-panel.active {
-  display: block;
-}
-
-.install-code {
-  padding: 1rem;
-  background: var(--bg-base);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  color: var(--accent-green);
-  font-size: 0.9rem;
-  overflow-x: auto;
-  white-space: pre;
-}
-
 .footer {
   margin-top: auto;
   border-top: 1px solid var(--border-subtle);
