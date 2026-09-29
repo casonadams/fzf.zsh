@@ -129,10 +129,10 @@ All environment variables can be customized in your `~/.zshrc` prior to sourcing
 | `FZF_CTRL_T_COMMAND` | `fd ...` &gt; `rg ...` | Fast file traversal command for `CTRL-T` |
 | `FZF_ALT_C_COMMAND` | `fd --type d ...` | Fast directory traversal command for `ALT-C` |
 | `FZF_PREVIEW_COMMAND` | `bat` &gt; `cat` / `tree` &gt; `eza` &gt; `ls` | Progressive command string used in preview windows |
-| `FZF_DEFAULT_OPTS` | `--color=16 --reverse ...` | Default command-line flags and toggle bindings |
-| `FZF_CTRL_T_OPTS` | `--preview ... --preview-window 'right:50%:hidden'` | File and directory preview options for `CTRL-T` |
+| `FZF_DEFAULT_OPTS` | `--color=16 --reverse ... --preview-window 'right,50%,border-left,<80(down,50%)'` | Default command-line flags and responsive preview |
+| `FZF_CTRL_T_OPTS` | `--preview ... --preview-window 'right,50%,border-left,<80(down,50%)'` | File and directory preview options for `CTRL-T` |
 | `FZF_CTRL_R_OPTS` | `--preview 'echo {}' --preview-window 'down:3:hidden:wrap'` | Multi-line command preview options for `CTRL-R` |
-| `FZF_ALT_C_OPTS` | `--preview 'tree ...' --preview-window 'right:50%:hidden'` | Directory tree preview options for `ALT-C` |
+| `FZF_ALT_C_OPTS` | `--preview 'tree ...' --preview-window 'right,50%,border-left,<80(down,50%)'` | Directory tree preview options for `ALT-C` |
 | `BAT_THEME` | `"ansi"` | Theme passed to `bat` for syntax highlighting |
 | `FZF_TMUX_HEIGHT` | `40%` | Height used when running inside tmux panes |
 | `DISABLE_FZF_AUTO_COMPLETION` | `false` | When set to `"true"`, skips loading fzf completion definitions |

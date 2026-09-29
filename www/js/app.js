@@ -441,7 +441,7 @@
       `export FZF_TMUX_HEIGHT="${height}"`,
       `export FZF_PREVIEW_COMMAND='${previewCombined}'`,
       `export FZF_DEFAULT_COMMAND="${searchCmd}"`,
-      `export FZF_DEFAULT_OPTS="--color=16 --reverse --inline-info --cycle --height=${height} --tiebreak=index --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview,tab:down,btab:up' --preview '\\$FZF_PREVIEW_COMMAND' --preview-window=${previewPos}:hidden"`
+      `export FZF_DEFAULT_OPTS="--color=16 --reverse --inline-info --cycle --height=${height} --tiebreak=index --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview,tab:down,btab:up' --preview '\\$FZF_PREVIEW_COMMAND' --preview-window='${previewPos},50%,border-left,<80(down,50%)'"`
     ];
 
     if (disableComp) {

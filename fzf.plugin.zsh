@@ -111,11 +111,11 @@ _fzf_init() {
   fi
 
   if [ -z "${FZF_DEFAULT_OPTS:-}" ]; then
-    export FZF_DEFAULT_OPTS="--color=16 --reverse --inline-info --cycle --height=${FZF_TMUX_HEIGHT:-40%} --tiebreak=index --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview,tab:down,btab:up' --preview '${FZF_PREVIEW_COMMAND}' --preview-window 'right:50%:hidden'"
+    export FZF_DEFAULT_OPTS="--color=16 --reverse --inline-info --cycle --height=${FZF_TMUX_HEIGHT:-40%} --tiebreak=index --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview,tab:down,btab:up' --preview '${FZF_PREVIEW_COMMAND}' --preview-window 'right,50%,border-left,<80(down,50%)'"
   fi
 
   if [ -z "${FZF_CTRL_T_OPTS:-}" ]; then
-    export FZF_CTRL_T_OPTS="--preview '${FZF_PREVIEW_COMMAND}' --preview-window 'right:50%:hidden' --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview'"
+    export FZF_CTRL_T_OPTS="--preview '${FZF_PREVIEW_COMMAND}' --preview-window 'right,50%,border-left,<80(down,50%)' --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview'"
   fi
 
   if [ -z "${FZF_CTRL_R_OPTS:-}" ]; then
@@ -123,7 +123,7 @@ _fzf_init() {
   fi
 
   if [ -z "${FZF_ALT_C_OPTS:-}" ]; then
-    export FZF_ALT_C_OPTS="--preview '([[ -d {} ]] && (tree -C -L 2 {} 2>/dev/null || eza --tree --level=2 --color=always {} 2>/dev/null || ls -la {}))' --preview-window 'right:50%:hidden' --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview'"
+    export FZF_ALT_C_OPTS="--preview '([[ -d {} ]] && (tree -C -L 2 {} 2>/dev/null || eza --tree --level=2 --color=always {} 2>/dev/null || ls -la {}))' --preview-window 'right,50%,border-left,<80(down,50%)' --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview'"
   fi
 }
 _fzf_init "$@"
