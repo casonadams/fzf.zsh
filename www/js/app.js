@@ -373,12 +373,10 @@
           renderList();
           renderPreview();
         }
-      } else if (e.key === "?") {
-        if (e.target.value.length === 0) {
-          e.preventDefault();
-          previewVisible = !previewVisible;
-          renderPreview();
-        }
+      } else if ((e.ctrlKey && e.key === "/") || (e.altKey && e.key === "?") || (e.key === "?" && e.target.value.length === 0)) {
+        e.preventDefault();
+        previewVisible = !previewVisible;
+        renderPreview();
       }
     });
   }
@@ -443,7 +441,7 @@
       `export FZF_TMUX_HEIGHT="${height}"`,
       `export FZF_PREVIEW_COMMAND='${previewCombined}'`,
       `export FZF_DEFAULT_COMMAND="${searchCmd}"`,
-      `export FZF_DEFAULT_OPTS="--color=16 --reverse --inline-info --cycle --height=${height} --tiebreak=index --bind '?:toggle-preview,tab:down,btab:up' --preview '\\$FZF_PREVIEW_COMMAND' --preview-window=${previewPos}"`
+      `export FZF_DEFAULT_OPTS="--color=16 --reverse --inline-info --cycle --height=${height} --tiebreak=index --bind 'ctrl-/:toggle-preview,alt-?:toggle-preview,tab:down,btab:up' --preview '\\$FZF_PREVIEW_COMMAND' --preview-window=${previewPos}:hidden"`
     ];
 
     if (disableComp) {

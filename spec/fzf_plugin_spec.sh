@@ -11,12 +11,15 @@ Describe 'fzf.plugin.zsh'
 
   Describe 'default configuration initialization'
     init_defaults() {
-      unset FZF_DEFAULT_COMMAND FZF_DEFAULT_OPTS FZF_PREVIEW_COMMAND BAT_THEME
+      unset FZF_DEFAULT_COMMAND FZF_DEFAULT_OPTS FZF_PREVIEW_COMMAND BAT_THEME FZF_CTRL_T_OPTS FZF_CTRL_R_OPTS FZF_ALT_C_OPTS
       . ./fzf.plugin.zsh
       echo "BAT_THEME=$BAT_THEME"
       echo "HAS_DEFAULT_COMMAND=${FZF_DEFAULT_COMMAND:+yes}"
       echo "HAS_DEFAULT_OPTS=${FZF_DEFAULT_OPTS:+yes}"
       echo "HAS_PREVIEW_COMMAND=${FZF_PREVIEW_COMMAND:+yes}"
+      echo "HAS_CTRL_T_OPTS=${FZF_CTRL_T_OPTS:+yes}"
+      echo "HAS_CTRL_R_OPTS=${FZF_CTRL_R_OPTS:+yes}"
+      echo "HAS_ALT_C_OPTS=${FZF_ALT_C_OPTS:+yes}"
     }
 
     It 'sets default environment variables when unset'
@@ -26,6 +29,9 @@ Describe 'fzf.plugin.zsh'
       The output should include 'HAS_DEFAULT_COMMAND=yes'
       The output should include 'HAS_DEFAULT_OPTS=yes'
       The output should include 'HAS_PREVIEW_COMMAND=yes'
+      The output should include 'HAS_CTRL_T_OPTS=yes'
+      The output should include 'HAS_CTRL_R_OPTS=yes'
+      The output should include 'HAS_ALT_C_OPTS=yes'
     End
 
     check_opts() {
@@ -41,6 +47,7 @@ Describe 'fzf.plugin.zsh'
       The output should include '--reverse'
       The output should include '--inline-info'
       The output should include '--cycle'
+      The output should include 'ctrl-/:toggle-preview'
     End
   End
 

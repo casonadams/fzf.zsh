@@ -42,7 +42,7 @@ If optional tools are omitted, `fzf.zsh` falls back to built-in POSIX utilities 
   - File search: [`fd`](https://github.com/sharkdp/fd) &gt; [`rg`](https://github.com/BurntSushi/ripgrep) &gt; `find`
   - File preview: [`bat`](https://github.com/sharkdp/bat) &gt; `cat`
   - Directory preview: [`eza`](https://github.com/eza-community/eza) &gt; `tree` &gt; `ls`
-- **Dynamic Preview Toggle**: Press `?` in any fzf menu to toggle the preview window on or off.
+- **Dynamic Preview Toggle**: Press `Ctrl-/` (or `Alt-?` / `Option-?`) in any fzf menu to toggle the preview window on or off.
 - **Robust Quality Gates**: 100% ShellCheck compliant (0 warnings), standardized `shfmt` (-i 2 -ci), and automated ShellSpec BDD testing matrix under Zsh.
 - **Zero Configuration Required**: Sensible, battle-tested defaults out of the box while remaining 100% backward compatible with existing user overrides.
 
@@ -113,7 +113,7 @@ source ~/.fzf.zsh/fzf.plugin.zsh
 | `CTRL-T` | File & Directory Selector | Interactively fuzzy search files and directories; paste path into command line |
 | `CTRL-R` | Command History Search | Fuzzy search previously executed commands; paste selection into line buffer |
 | `ALT-C` | Change Directory | Fuzzy search directories and `cd` directly into the selection |
-| `?` | Toggle Preview | In interactive fzf menu, dynamically show/hide the preview pane |
+| `CTRL-/` / `ALT-?` | Toggle Preview | In interactive fzf menu, dynamically show/hide the preview pane |
 | `Tab` / `Shift-Tab` | Multi-select | Toggle multi-item selection in supported widgets |
 
 ---
@@ -126,13 +126,17 @@ All environment variables can be customized in your `~/.zshrc` prior to sourcing
 | :--- | :--- | :--- |
 | `FZF_BASE` | *(auto-detected)* | Explicit path to fzf installation directory |
 | `FZF_DEFAULT_COMMAND` | `fd ...` &gt; `rg ...` &gt; `find .` | Default command used for filesystem traversal |
-| `FZF_PREVIEW_COMMAND` | `bat` &gt; `cat` / `eza` &gt; `tree` &gt; `ls` | Progressive command string used in preview windows |
-| `FZF_DEFAULT_OPTS` | `--color=16 --reverse ...` | Default command-line flags passed to fzf invocations |
+| `FZF_CTRL_T_COMMAND` | `fd ...` &gt; `rg ...` | Fast file traversal command for `CTRL-T` |
+| `FZF_ALT_C_COMMAND` | `fd --type d ...` | Fast directory traversal command for `ALT-C` |
+| `FZF_PREVIEW_COMMAND` | `bat` &gt; `cat` / `tree` &gt; `eza` &gt; `ls` | Progressive command string used in preview windows |
+| `FZF_DEFAULT_OPTS` | `--color=16 --reverse ...` | Default command-line flags and toggle bindings |
+| `FZF_CTRL_T_OPTS` | `--preview ... --preview-window 'right:50%:hidden'` | File and directory preview options for `CTRL-T` |
+| `FZF_CTRL_R_OPTS` | `--preview 'echo {}' --preview-window 'down:3:hidden:wrap'` | Multi-line command preview options for `CTRL-R` |
+| `FZF_ALT_C_OPTS` | `--preview 'tree ...' --preview-window 'right:50%:hidden'` | Directory tree preview options for `ALT-C` |
 | `BAT_THEME` | `"ansi"` | Theme passed to `bat` for syntax highlighting |
 | `FZF_TMUX_HEIGHT` | `40%` | Height used when running inside tmux panes |
 | `DISABLE_FZF_AUTO_COMPLETION` | `false` | When set to `"true"`, skips loading fzf completion definitions |
 | `DISABLE_FZF_KEY_BINDINGS` | `false` | When set to `"true"`, skips binding `CTRL-T`, `CTRL-R`, and `ALT-C` |
-
 ### Custom Configuration Example
 
 ```zsh
